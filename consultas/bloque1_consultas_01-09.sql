@@ -17,13 +17,21 @@ WHERE PlatformLinux = 'True'
   AND PlatformMac = 'False';
 
 -- 04. Lista todos los juegos de rol, ordenados por nota.
--- TODO
+SELECT Nombre, Genre, Metacritic
+FROM juegos
+WHERE Genre LIKE '%RPG%'
+ORDER BY Metacritic DESC;
 
 -- 05. Lista todos aquellos juegos que puedan ser jugados en español pero no en francés.
--- TODO
+SELECT Nombre, SupportedLanguages
+FROM juegos
+WHERE SupportedLanguages LIKE '%Spanish%'
+  AND SupportedLanguages NOT LIKE '%French%';
 
 -- 06. Lista el nombre del juego, su precio inicial, su precio final y la diferencia entre ambos en una nueva columna.
--- TODO
+SELECT Nombre, PriceInitial, PriceFinal,
+       ROUND(PriceInitial - PriceFinal, 2) AS Diferencia
+FROM juegos;
 
 -- 07. ¿Cuántos juegos hay del siglo pasado?
 -- TODO
