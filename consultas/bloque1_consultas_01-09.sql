@@ -34,11 +34,21 @@ SELECT Nombre, PriceInitial, PriceFinal,
 FROM juegos;
 
 -- 07. ¿Cuántos juegos hay del siglo pasado?
--- TODO
+-- ReleaseDate es texto con el año ('1998'). Se quitan los años vacíos ('').
+SELECT COUNT(*) AS JuegosSigloPasado
+FROM juegos
+WHERE ReleaseDate <= '2000'
+  AND ReleaseDate <> '';
 
 -- 08. Devuelve todos los juegos que terminen en N o en O.
--- TODO
+SELECT Nombre
+FROM juegos
+WHERE Nombre LIKE '%n'
+   OR Nombre LIKE '%o';
 
 -- 09. Devuelve todos los juegos que empiecen por A y que se puedan jugar con mando.
--- TODO
+SELECT Nombre, ControllerSupport
+FROM juegos
+WHERE Nombre LIKE 'A%'
+  AND ControllerSupport = 'True';
 
