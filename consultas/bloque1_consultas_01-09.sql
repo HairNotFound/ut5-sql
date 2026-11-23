@@ -1,13 +1,20 @@
 USE steam;
 
 -- 01. Lista todas las columnas de la tabla.
--- TODO
+SELECT *
+FROM juegos;
 
 -- 02. Lista todos los diferentes géneros, eliminando duplicados.
--- TODO
+SELECT DISTINCT Genre
+FROM juegos
+ORDER BY Genre;
 
 -- 03. Lista únicamente aquellos juegos que puedan ser jugados únicamente en Linux.
--- TODO
+SELECT Nombre, PlatformLinux, PlatformWindows, PlatformMac
+FROM juegos
+WHERE PlatformLinux = 'True'
+  AND PlatformWindows = 'False'
+  AND PlatformMac = 'False';
 
 -- 04. Lista todos los juegos de rol, ordenados por nota.
 -- TODO
