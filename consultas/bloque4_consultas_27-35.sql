@@ -1,10 +1,16 @@
 USE steam;
 
 -- 27. Devuelve la información de los juegos que sólo se puedan jugar en inglés.
--- TODO
+--     Algunos juegos solo en inglés llevan la nota de audio pegada al idioma, por eso se aceptan las dos formas.
+SELECT *
+FROM juegos
+WHERE TRIM(SupportedLanguages) IN ('English', 'English**languages with full audio support');
 
 -- 28. Devuelve el nombre (en minúscula) y la web (en mayúscula) de los juegos de acción o casuales.
--- TODO
+SELECT LOWER(Nombre) AS Nombre, UPPER(Website) AS Web
+FROM juegos
+WHERE Genre LIKE '%Action%'
+   OR Genre LIKE '%Casual%';
 
 -- 29. ¿Cuál es el juego indie con mayor nota?
 -- TODO
