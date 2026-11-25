@@ -53,8 +53,16 @@ WHERE ReleaseDate = '2008'
                     WHERE ReleaseDate = '2008');
 
 -- 34. [Subconsulta] Devuelve toda la información de los juegos que valgan más que la media.
--- TODO
+SELECT *
+FROM juegos
+WHERE PriceFinal > (SELECT AVG(PriceFinal)
+                    FROM juegos);
 
 -- 35. [Subconsulta] Devuelve toda la información de los juegos de Linux que tengan el mayor número de logros.
--- TODO
+SELECT *
+FROM juegos
+WHERE PlatformLinux = 'True'
+  AND AchievementCount = (SELECT MAX(AchievementCount)
+                          FROM juegos
+                          WHERE PlatformLinux = 'True');
 
