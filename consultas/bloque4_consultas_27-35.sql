@@ -13,10 +13,20 @@ WHERE Genre LIKE '%Action%'
    OR Genre LIKE '%Casual%';
 
 -- 29. ¿Cuál es el juego indie con mayor nota?
--- TODO
+SELECT Nombre, Genre, Metacritic
+FROM juegos
+WHERE Genre LIKE '%Indie%'
+ORDER BY Metacritic DESC
+LIMIT 1;
 
 -- 30. ¿Y con menor nota?
--- TODO
+--     Los juegos con Metacritic = 0 no tienen nota, así que no cuentan.
+SELECT Nombre, Genre, Metacritic
+FROM juegos
+WHERE Genre LIKE '%Indie%'
+  AND Metacritic > 0
+ORDER BY Metacritic ASC
+LIMIT 1;
 
 -- 31. [Subconsulta] Devuelve toda la información del juego con menor nota, siempre que sea mayor a cero.
 -- TODO
