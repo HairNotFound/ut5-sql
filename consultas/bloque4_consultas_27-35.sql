@@ -29,17 +29,40 @@ ORDER BY Metacritic ASC
 LIMIT 1;
 
 -- 31. [Subconsulta] Devuelve toda la información del juego con menor nota, siempre que sea mayor a cero.
--- TODO
+SELECT *
+FROM juegos
+WHERE Metacritic = (SELECT MIN(Metacritic)
+                    FROM juegos
+                    WHERE Metacritic > 0);
 
 -- 32. [Subconsulta] Devuelve aquellos juegos que tengan mayor nota que la media.
--- TODO
+--     La media se calcula solo con los juegos que tienen nota (Metacritic > 0).
+SELECT Nombre, Metacritic
+FROM juegos
+WHERE Metacritic > (SELECT AVG(Metacritic)
+                    FROM juegos
+                    WHERE Metacritic > 0)
+ORDER BY Metacritic DESC;
 
 -- 33. [Subconsulta] Devuelve el juego con mayor nota del año 2008.
--- TODO
+SELECT Nombre, ReleaseDate, Metacritic
+FROM juegos
+WHERE ReleaseDate = '2008'
+  AND Metacritic = (SELECT MAX(Metacritic)
+                    FROM juegos
+                    WHERE ReleaseDate = '2008');
 
 -- 34. [Subconsulta] Devuelve toda la información de los juegos que valgan más que la media.
--- TODO
+SELECT *
+FROM juegos
+WHERE PriceFinal > (SELECT AVG(PriceFinal)
+                    FROM juegos);
 
 -- 35. [Subconsulta] Devuelve toda la información de los juegos de Linux que tengan el mayor número de logros.
--- TODO
+SELECT *
+FROM juegos
+WHERE PlatformLinux = 'True'
+  AND AchievementCount = (SELECT MAX(AchievementCount)
+                          FROM juegos
+                          WHERE PlatformLinux = 'True');
 
