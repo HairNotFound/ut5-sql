@@ -28,14 +28,31 @@ GROUP BY ReleaseDate
 ORDER BY ReleaseDate;
 
 -- 15. En base a la consulta anterior, devuelve aquellos años en los que la media de puntuación esté entre un 6 y un 8.
--- TODO
+-- Notas sobre 100 (6 y 8 son 60 y 80). No cuento los juegos sin nota (0).
+SELECT ReleaseDate, ROUND(AVG(Metacritic), 2) AS Media
+FROM juegos
+WHERE Metacritic > 0
+GROUP BY ReleaseDate
+HAVING AVG(Metacritic) BETWEEN 60 AND 80
+ORDER BY ReleaseDate;
 
 -- 16. ¿Cuál es la puntuación máxima, mínima y media por género?
--- TODO
+SELECT Genre, MAX(Metacritic) AS Maxima, MIN(Metacritic) AS Minima, ROUND(AVG(Metacritic), 2) AS Media
+FROM juegos
+GROUP BY Genre;
 
 -- 17. Usando LIMIT, devuelve el top 10 de juegos con mayor puntuación del 2012.
--- TODO
+SELECT Nombre, Metacritic
+FROM juegos
+WHERE ReleaseDate = '2012'
+ORDER BY Metacritic DESC
+LIMIT 10;
 
 -- 18. Usando LIMIT, devuelve el top 10 de juegos más nuevos de género single player.
--- TODO
+-- Quito los años vacíos o mal escritos (2O17, 20XX...) para que no salgan los primeros.
+SELECT Nombre, ReleaseDate
+FROM juegos
+WHERE Category LIKE '%Single Player%' AND ReleaseDate BETWEEN '1900' AND '2099'
+ORDER BY ReleaseDate DESC
+LIMIT 10;
 
